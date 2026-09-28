@@ -173,9 +173,5 @@ Open your web browser and navigate to:
 http://127.0.0.1:5000/
 ```
 
----
 
-## Author & Acknowledgments
-
-- **Developed by**: [tarenjk24](https://github.com/tarenjk24)
 - Built with Flask, SQLite, Bootstrap, and Jinja2.
