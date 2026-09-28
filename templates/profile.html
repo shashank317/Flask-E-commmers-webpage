@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+<div style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <h1 style="font-size: 40px; text-align: center; margin-bottom: 40px;">Hello, {{ user_data.username }}.</h1>
+
+  <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+    
+    <div class="apple-card" style="flex: 1; min-width: 300px; margin-bottom: 0;">
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Account Details</h2>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Username: <span style="color: var(--text-primary); font-weight: 500;">{{ user_data.username }}</span></p>
+      <div style="margin-top: 24px;">
+        <a href="/remove" class="btn-apple btn-apple-secondary" style="color: var(--danger); background: rgba(255, 59, 48, 0.1);">Delete Account</a>
+      </div>
+    </div>
+    
+    <div class="apple-card" style="flex: 1; min-width: 300px; margin-bottom: 0;">
+      <h2 style="font-size: 20px; margin-bottom: 16px;">Active Cart</h2>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Total estimated amount:</p>
+      <p style="font-size: 32px; font-weight: 500;">{{ total_amount|usd if total_amount|usd else total_amount }}</p>
+      <div style="margin-top: 16px;">
+        <a href="/cart" style="font-size: 14px;">View Bag &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 style="font-size: 24px; margin-bottom: 24px;">Order History</h2>
+  <div class="apple-card">
+    {% if orders %}
+      <table class="apple-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Shipping Address</th>
+            <th>City</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody> 
+          {% for order in orders %}
+            <tr>
+              <td style="font-size: 14px; color: var(--text-secondary);">{{ order.history }}</td>
+              <td style="font-weight: 500; font-size: 14px;">{{ order.address }}</td>
+              <td style="font-size: 14px;">{{ order.city }} ({{ order.postal_code }})</td>
+              <td style="font-size: 14px; color: var(--text-secondary);">{{ order.phone_number }}</td>
+            </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div style="text-align: center; padding: 20px 0;">
+        <p style="color: var(--text-secondary);">You haven't placed any orders yet.</p>
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

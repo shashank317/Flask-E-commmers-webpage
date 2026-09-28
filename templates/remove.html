@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete Account
+{% endblock %}
+
+{% block main %}
+<div style="display: flex; justify-content: center; margin-top: 60px;">
+  <div class="apple-card" style="max-width: 400px; width: 100%; text-align: center;">
+    
+    <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,59,48,0.1); color: var(--danger); display: flex; justify-content: center; align-items: center; margin: 0 auto 24px; font-size: 24px;">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <h1 style="font-size: 24px; margin-bottom: 8px;">Delete Account</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 14px;">This action is permanent and cannot be undone. Enter your details to confirm.</p>
+
+    <form action="/remove" method="post">
+      <input autocomplete="off" class="input-apple" id="username" name="username" placeholder="Username" type="text" required>
+      <input class="input-apple" id="password" name="password" placeholder="Password" type="password" required>
+      <input class="input-apple" id="confirmation" name="confirmation" placeholder="Confirm Password" type="password" required>
+      
+      <button class="btn-apple" type="submit" style="width: 100%; margin-top: 16px; background-color: var(--danger);">Delete My Account</button>
+    </form>
+
+    <div style="margin-top: 24px; font-size: 14px;">
+      <a href="/profile" style="color: var(--text-secondary);">Cancel</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

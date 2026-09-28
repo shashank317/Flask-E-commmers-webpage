@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block main %}
+<div style="display: flex; justify-content: center; margin-top: 40px;">
+  <div class="apple-card" style="max-width: 600px; width: 100%;">
+    
+    <h1 style="font-size: 32px; margin-bottom: 8px; text-align: center;">Where should we send your order?</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 40px; font-size: 14px; text-align: center;">Enter your delivery details.</p>
+
+    <form action="/checkout" method="post">
+      <div style="margin-bottom: 24px;">
+        <label for="address" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Street Address</label>
+        <input class="input-apple" id="address" name="address" placeholder="123 Apple Park Way" type="text" required>
+      </div>
+
+      <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+        <div style="flex: 1;">
+          <label for="city" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">City</label>
+          <input class="input-apple" id="city" name="city" placeholder="Cupertino" type="text" required>
+        </div>
+        <div style="flex: 1;">
+          <label for="postal_code" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Postal Code</label>
+          <input class="input-apple" id="postal_code" name="postal_code" placeholder="95014" type="number" required>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 32px;">
+        <label for="phone_number" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Phone Number</label>
+        <input class="input-apple" id="phone_number" name="phone_number" placeholder="1-800-MY-APPLE" type="number" required>
+      </div>
+      
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="/cart" style="font-size: 14px;">Return to Bag</a>
+        <button class="btn-apple" type="submit">Continue to Payment</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

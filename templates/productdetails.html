@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Product Details
+{% endblock %}
+
+{% block main %}
+<div style="margin-top: 40px; display: flex; justify-content: center;">
+  <div class="apple-card" style="max-width: 800px; width: 100%; display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+    
+    {% for detail in details %}
+      <div style="flex: 1; min-width: 300px; text-align: center;">
+        <img src="{{ detail.cover }}" alt="{{ detail.name }}" style="max-width: 100%; height: auto; border-radius: 12px;">
+      </div>
+      
+      <div style="flex: 1; min-width: 300px;">
+        <div style="margin-bottom: 24px;">
+          <h1 style="font-size: 40px; margin-bottom: 8px;">{{ detail.name }}</h1>
+          <p style="font-size: 24px; color: var(--text-secondary);">{{ detail.price|usd if detail.price|usd else detail.price }}</p>
+        </div>
+        
+        <p style="font-size: 16px; color: var(--text-primary); margin-bottom: 32px; line-height: 1.6;">
+          {{ detail.description }}
+        </p>
+
+        {% if session["user_id"] %}
+          <form method="POST" action="/addtocart/{{ detail.id }}">
+            <div style="margin-bottom: 24px;">
+              <label for="frequency" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Quantity</label>
+              <input type="number" id="frequency" name="frequency" class="input-apple" style="width: 120px;" min="1" value="1" required>
+              <input type="hidden" name="id" value="{{ detail.id }}">
+            </div>
+            
+            <div style="display: flex; gap: 12px;">
+              <button type="submit" class="btn-apple">Add to Bag</button>
+              <a href="/checkout" class="btn-apple btn-apple-secondary">Check Out</a>
+            </div>
+          </form>
+        {% else %}
+          <div style="background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; text-align: center;">
+            <p style="margin-bottom: 12px; color: var(--text-secondary);">Sign in to purchase this product.</p>
+            <a href="{{ url_for('login') }}" class="btn-apple">Log In</a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}

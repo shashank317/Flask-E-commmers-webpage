@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Bag
+{% endblock %}
+
+{% block main %}
+<div style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <h1 style="font-size: 40px; text-align: center; margin-bottom: 40px;">Review your bag.</h1>
+
+  <div class="apple-card">
+    {% if rows %}
+      <table class="apple-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Name</th>
+            <th style="text-align: right;">Quantity</th>
+            <th style="text-align: right;">Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody> 
+          {% for row in rows %}
+            <tr>
+              <td>
+                <img src="{{ row.cover }}" alt="{{ row.name }}">
+              </td>
+              <td style="font-weight: 500;">{{ row.name }}</td>
+              <td style="text-align: right; color: var(--text-secondary);">{{ row.quantity }}</td>
+              <td style="text-align: right; font-weight: 500;">{{ row.price }}</td>
+              <td style="text-align: right;">
+                <a href="#" style="font-size: 12px; color: var(--accent);">Remove</a>
+              </td>
+            </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 24px;">
+        <a href="/" style="font-size: 14px;">Continue Shopping</a>
+        <a href="/checkout" class="btn-apple">Check Out</a>
+      </div>
+    {% else %}
+      <div style="text-align: center; padding: 40px 0;">
+        <h3 style="margin-bottom: 16px; color: var(--text-secondary);">Your bag is empty.</h3>
+        <a href="/" class="btn-apple btn-apple-secondary">Continue Shopping</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

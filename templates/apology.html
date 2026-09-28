@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Oops
+{% endblock %}
+
+{% block main %}
+<div style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
+  <div style="text-align: center;">
+    <h1 style="font-size: 120px; font-weight: 700; color: #d2d2d7; margin-bottom: 0; line-height: 1;">{{ top }}</h1>
+    <h2 style="font-size: 24px; margin-bottom: 16px; color: var(--text-primary);">Something went wrong.</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 16px; max-width: 400px;">{{ bottom }}</p>
+    <a href="javascript:history.back()" class="btn-apple">Go Back</a>
+  </div>
+</div>
+{% endblock %}

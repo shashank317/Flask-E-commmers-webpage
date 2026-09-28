@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Store
+{% endblock %}
+
+{% block main %}
+<div style="text-align: center; padding: 40px 0 20px;">
+  <h1 style="font-size: 48px; letter-spacing: -0.02em;">Store.</h1>
+  <p style="font-size: 24px; color: var(--text-secondary); font-weight: 400;">The best way to buy the products you love.</p>
+</div>
+
+<div class="products-grid">
+  {% for product in products %}
+    <a href="{{ url_for('productdetails', id=product.id) }}" style="text-decoration: none;">
+      <div class="product-card">
+        <img src="{{ product.cover }}" alt="{{ product.name }}">
+        <div class="category">{{ product.category }}</div>
+        <h3>{{ product.name }}</h3>
+        <div class="price">{{ product.price|usd if product.price|usd else product.price }}</div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}

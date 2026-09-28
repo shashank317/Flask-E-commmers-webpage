@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create Account
+{% endblock %}
+
+{% block main %}
+<div style="display: flex; justify-content: center; margin-top: 60px;">
+  <div class="apple-card" style="max-width: 400px; width: 100%; text-align: center;">
+    
+    <h1 style="font-size: 28px; margin-bottom: 8px;">Create your ID</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 14px;">One account for everything Store.</p>
+
+    <form action="/register" method="post">
+      <input autocomplete="off" autofocus class="input-apple" id="username" name="username" placeholder="Username" type="text" required>
+      <input class="input-apple" id="password" name="password" placeholder="Password" type="password" required>
+      <input class="input-apple" id="confirmation" name="confirmation" placeholder="Confirm Password" type="password" required>
+      
+      <button class="btn-apple" type="submit" style="width: 100%; margin-top: 16px;">Create Account</button>
+    </form>
+
+    <div style="margin-top: 24px; font-size: 14px; color: var(--text-secondary);">
+      Already have an account? <a href="/login">Sign in.</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

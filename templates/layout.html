@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store - {% block title %}{% endblock %}</title>
+    <!-- Font Awesome for subtle icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Apple Theme CSS -->
+    <link href="/static/apple_theme.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- Apple-style Glassmorphism Navbar -->
+    <nav class="navbar-custom">
+      <div class="nav-container">
+        <a href="/" style="font-weight: 600; font-size: 18px; color: var(--text-primary); text-decoration: none;">
+          <i class="fa-brands fa-apple"></i> Store
+        </a>
+        <div class="nav-links">
+          {% if session["user_id"] %}
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Log Out</a>
+            <a href="/cart" class="cart-icon"><i class="fa-solid fa-bag-shopping"></i></a>
+          {% else %}
+            <a href="/">Home</a>
+            <a href="/products">Products</a>
+            <a href="/login">Log In</a>
+            <a href="/register">Sign Up</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Flash Messages -->
+      <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category if category != 'message' else 'info' }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+
+      {% block main %}{% endblock %}
+    </main>
+
+    <footer class="footer-custom">
+      <p>Copyright © 2026 Apple-Inspired Store. All rights reserved.</p>
+    </footer>
+
+  </body>
+</html>
